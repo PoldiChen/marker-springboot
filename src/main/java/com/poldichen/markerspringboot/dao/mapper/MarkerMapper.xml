@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poldichen.markerspringboot.dao.IMarkerDao">
+
+    <resultMap type="com.poldichen.markerspringboot.entity.Marker" id="markerMap">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+
+        <collection property="labels" ofType="com.poldichen.markerspringboot.entity.Label">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+        </collection>
+    </resultMap>
+
+    <select id="getAll" resultMap="markerMap">
+        SELECT * FROM marker m
+        inner join marker_label ml on m.id = ml.marker_id
+        inner join label b on ml.label_id = b.id
+    </select>
+
+    <insert id="createOne" useGeneratedKeys="true" keyProperty="id">
+        insert into marker (title, content, author, update_date) values (#{marker.title}, #{marker.content}, #{marker.author}, #{marker.updateDate})
+    </insert>
+
+    <insert id="createMarkerLabel" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into marker_label (marker_id, label_id) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.get("marker_id")},
+            #{item.get("label_id")}
+            )
+        </foreach>
+    </insert>
+
+</mapper>
