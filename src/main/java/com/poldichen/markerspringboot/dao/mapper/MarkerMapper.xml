@@ -19,16 +19,17 @@
         inner join label b on ml.label_id = b.id
     </select>
 
-    <insert id="createOne" useGeneratedKeys="true" keyProperty="id">
-        insert into marker (title, content, author, update_date) values (#{marker.title}, #{marker.content}, #{marker.author}, #{marker.updateDate})
+    <insert id="createOne" parameterType="com.poldichen.markerspringboot.entity.Marker" useGeneratedKeys="true" keyProperty="marker.id">
+        insert into marker (title, content, author, update_date)
+        values (#{marker.title}, #{marker.content}, #{marker.author}, #{marker.updateDate})
     </insert>
 
     <insert id="createMarkerLabel" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         insert into marker_label (marker_id, label_id) values
-        <foreach collection="list" item="item" index="index" separator=",">
+        <foreach collection="label_ids" item="item" index="index" separator=",">
             (
-            #{item.get("marker_id")},
-            #{item.get("label_id")}
+            #{marker_id},
+            #{item}
             )
         </foreach>
     </insert>

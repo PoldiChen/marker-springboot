@@ -1,9 +1,7 @@
 package com.poldichen.markerspringboot.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +14,8 @@ import java.util.Set;
  * @date 2019/8/10 20:50
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Marker {
 
     @Getter
@@ -40,6 +40,13 @@ public class Marker {
 
     @Getter
     @Setter
-    @JSONField(name="labels")
+//    @JSONField(name="labels")
     private List<Label> labels;
+
+//    public Marker(String title, String content, int author, Date updateDate) {
+//        this.title = title;
+//        this.content = content;
+//        this.author = author;
+//        this.updateDate = updateDate;
+//    }
 }

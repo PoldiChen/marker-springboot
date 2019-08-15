@@ -28,19 +28,14 @@ public class MarkerServiceImpl implements IMarkerService {
 
     @Override
     public int createOne(Marker marker) {
-        int markerId = markerDao.createOne(marker);
+        System.out.println(marker.getId());
+        markerDao.createOne(marker);
 
-        System.out.println("marker id:" + markerId);
-
-        List<Map<String, Integer>> params = new ArrayList<>();
+        List<Integer> labelIds = new ArrayList<>();
         for (Label label : marker.getLabels()) {
-            Map<String, Integer> map = new HashMap<>();
-            map.put("markerId", markerId);
-            map.put("labelId", label.getId());
-            params.add(map);
+            labelIds.add(label.getId());
         }
-
-        markerDao.createMarkerLabel(params);
-        return markerId;
+        markerDao.createMarkerLabel(marker.getId(), labelIds);
+        return 1;
     }
 }

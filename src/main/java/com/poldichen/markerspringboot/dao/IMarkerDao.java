@@ -14,5 +14,5 @@ public interface IMarkerDao {
 
     public int createOne(@Param("marker") Marker marker);
 
-    public void createMarkerLabel(@Param("markerParams") List<Map<String, Integer>> params);
+    public void createMarkerLabel(@Param("marker_id") int markerId, @Param("label_ids") List<Integer> labelIds);
 }
