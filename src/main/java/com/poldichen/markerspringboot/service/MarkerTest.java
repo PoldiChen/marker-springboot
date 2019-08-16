@@ -30,7 +30,7 @@ public class MarkerTest {
     public IMarkerService markerService;
 
     @Test
-    public void test() {
+    public void testGetAll() {
         List<Marker> markers = markerService.getAll();
         for (Marker marker : markers) {
             System.out.println(marker.getTitle());

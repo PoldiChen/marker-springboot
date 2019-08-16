@@ -17,6 +17,7 @@
         SELECT * FROM marker m
         inner join marker_label ml on m.id = ml.marker_id
         inner join label b on ml.label_id = b.id
+        order by m.id desc
     </select>
 
     <insert id="createOne" parameterType="com.poldichen.markerspringboot.entity.Marker" useGeneratedKeys="true" keyProperty="marker.id">
