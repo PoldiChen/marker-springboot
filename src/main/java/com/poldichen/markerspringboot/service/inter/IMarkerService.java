@@ -9,4 +9,6 @@ public interface IMarkerService {
     public List<Marker> getAll();
 
     public int createOne(Marker marker);
+
+    public int updateOne(Marker marker);
 }

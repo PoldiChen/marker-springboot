@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.poldichen.markerspringboot.dao")
 public class MarkerSpringbootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MarkerSpringbootApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MarkerSpringbootApplication.class, args);
+    }
 
 }

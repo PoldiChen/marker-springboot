@@ -29,13 +29,29 @@ public class MarkerServiceImpl implements IMarkerService {
     @Override
     public int createOne(Marker marker) {
         System.out.println(marker.getId());
+        // 创建一条新的marker记录
         markerDao.createOne(marker);
+        // 添加marker和label的关联
+        markerDao.createMarkerLabel(marker.getId(), getLabelIds(marker));
+        return marker.getId();
+    }
 
+    @Override
+    public int updateOne(Marker marker) {
+        // 更新marker
+        markerDao.updateOne(marker);
+        // 删除marker和label的关联
+        markerDao.deleteMarkerLabel(marker.getId());
+        // 新增marker和label的关联
+        markerDao.createMarkerLabel(marker.getId(), getLabelIds(marker));
+        return 1;
+    }
+
+    private List<Integer> getLabelIds(Marker marker) {
         List<Integer> labelIds = new ArrayList<>();
         for (Label label : marker.getLabels()) {
             labelIds.add(label.getId());
         }
-        markerDao.createMarkerLabel(marker.getId(), labelIds);
-        return 1;
+        return labelIds;
     }
 }

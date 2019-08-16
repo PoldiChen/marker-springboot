@@ -34,4 +34,17 @@
         </foreach>
     </insert>
 
+    <update id="updateOne" parameterType="com.poldichen.markerspringboot.entity.Marker">
+        update marker set
+        title = #{marker.title},
+        content = #{marker.content},
+        author = #{marker.author},
+        update_date = #{marker.updateDate}
+        where id = #{marker.id}
+    </update>
+
+    <delete id="deleteMarkerLabel">
+        delete from marker_label where marker_id = #{marker_id}
+    </delete>
+
 </mapper>
