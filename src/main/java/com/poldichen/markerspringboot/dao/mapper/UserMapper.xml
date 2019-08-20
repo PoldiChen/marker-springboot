@@ -8,4 +8,8 @@
         values (#{user.userName}, #{user.password}, #{user.display}, #{user.email})
     </insert>
 
+    <select id="getByName" resultType="com.poldichen.markerspringboot.entity.User">
+        SELECT * FROM user where user_name = #{userName}
+    </select>
+
 </mapper>

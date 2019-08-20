@@ -22,4 +22,9 @@ public class UserServiceImpl implements IUserService {
     public int createOne(User user) {
         return userDao.createOne(user);
     }
+
+    @Override
+    public User getByName(String userName) {
+        return userDao.getByName(userName);
+    }
 }

@@ -7,4 +7,6 @@ public interface IUserDao {
 
     public int createOne(@Param("user") User user);
 
+    public User getByName(@Param("userName") String userName);
+
 }

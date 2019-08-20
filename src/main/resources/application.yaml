@@ -11,3 +11,7 @@ spring:
 
 mybatis:
   mapper-locations: "com/poldichen/markerspringboot/dao/mapper/*.xml"
+
+jwt:
+  prefix: marker
+  secret: 123456

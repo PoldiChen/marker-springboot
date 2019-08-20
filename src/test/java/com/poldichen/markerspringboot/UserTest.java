@@ -32,4 +32,10 @@ public class UserTest {
         System.out.println("user id: " + userId);
     }
 
+    @Test
+    public void testGetByName() {
+        User user = userService.getByName("poldi");
+        System.out.println(user.getEmail());
+    }
+
 }

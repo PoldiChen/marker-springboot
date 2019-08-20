@@ -11,4 +11,6 @@ import com.poldichen.markerspringboot.entity.User;
 public interface IUserService {
 
     public int createOne(User user);
+
+    public User getByName(String userName);
 }
