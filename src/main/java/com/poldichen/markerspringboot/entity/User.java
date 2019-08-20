@@ -2,6 +2,7 @@ package com.poldichen.markerspringboot.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -11,11 +12,20 @@ import lombok.Setter;
  * @date 2019/8/11 15:41
  **/
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Getter
     @Setter
-    private String name;
+    private int id;
+
+    @Getter
+    @Setter
+    private String userName;
+
+    @Getter
+    @Setter
+    private String password;
 
     @Getter
     @Setter

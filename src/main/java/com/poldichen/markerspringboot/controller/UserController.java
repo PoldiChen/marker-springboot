@@ -21,7 +21,7 @@ public class UserController {
     public Resp currentUser() {
         Resp resp = new Resp();
         List<User> users = new ArrayList<>();
-        users.add(new User("chenxihong", "chenxihong", "poldi_chen@163.com"));
+        users.add(new User(11,"chenxihong", "chenxihong", "chenxihong", "poldi_chen@163.com"));
         resp.setData(users);
         return resp;
     }

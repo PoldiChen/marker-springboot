@@ -1,4 +1,4 @@
-package com.poldichen.markerspringboot.service;
+package com.poldichen.markerspringboot;
 
 import com.poldichen.markerspringboot.MarkerSpringbootApplication;
 import com.poldichen.markerspringboot.entity.Label;
