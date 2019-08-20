@@ -36,6 +36,7 @@ public class UserTest {
     public void testGetByName() {
         User user = userService.getByName("poldi");
         System.out.println(user.getEmail());
+        System.out.println(user.getUserName());
     }
 
 }

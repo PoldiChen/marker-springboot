@@ -1,9 +1,6 @@
 package com.poldichen.markerspringboot.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author poldi.chen
@@ -11,6 +8,7 @@ import lombok.Setter;
  * @description TODO
  * @date 2019/8/11 15:41
  **/
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {

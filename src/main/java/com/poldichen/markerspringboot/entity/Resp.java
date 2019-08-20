@@ -24,4 +24,9 @@ public class Resp {
     @Getter
     @Setter
     private String message;
+
+    public Resp() {
+        this.code = 0;
+        this.message = "OK";
+    }
 }

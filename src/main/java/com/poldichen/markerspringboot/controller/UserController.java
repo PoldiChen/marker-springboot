@@ -2,9 +2,14 @@ package com.poldichen.markerspringboot.controller;
 
 import com.poldichen.markerspringboot.entity.Resp;
 import com.poldichen.markerspringboot.entity.User;
+import com.poldichen.markerspringboot.service.inter.IUserService;
+import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +22,33 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private String jwtPrefix = "marker";
+    private String jwtSecret = "123456";
+
+    @Autowired
+    private IUserService userService;
+
     @RequestMapping(value="/user/current_user")
-    public Resp currentUser() {
+    public Resp currentUser(HttpServletRequest request) {
+        System.out.println("UserController@currentUser");
         Resp resp = new Resp();
-        List<User> users = new ArrayList<>();
-        users.add(new User(11,"chenxihong", "chenxihong", "chenxihong", "poldi_chen@163.com"));
-        resp.setData(users);
+
+        String tokenStr = request.getHeader("Authorization");
+        if (tokenStr == null || tokenStr.equals("")) {
+            tokenStr = request.getHeader("authorization");
+        }
+        System.out.println(tokenStr);
+
+        String userName
+                = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(tokenStr.replace(jwtPrefix + "-", ""))
+                .getBody()
+                .getSubject();
+        User user = userService.getByName(userName);
+        resp.setData(user);
+
+
         return resp;
     }
 

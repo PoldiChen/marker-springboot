@@ -1,6 +1,8 @@
 package com.poldichen.markerspringboot.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.poldichen.markerspringboot.entity.Resp;
 import com.poldichen.markerspringboot.entity.User;
 import com.poldichen.markerspringboot.entity.UserDTO;
 import io.jsonwebtoken.Jwts;
@@ -73,10 +75,11 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         String token = Jwts.builder()
                 .setSubject(((UserDTO) auth.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 60 * 1000)) // 过期时间，60秒
+                .setExpiration(new Date(System.currentTimeMillis() + 60 * 1000 * 60)) // 过期时间，60秒
                 .signWith(SignatureAlgorithm.HS512, jwtSecret) // MyJwtSecret
                 .compact();
         res.addHeader("Authorization",  jwtPrefix + "-" + token); // Bearer空格
+        res.getOutputStream().write(JSON.toJSONString(new Resp()).getBytes());
     }
 
 }
