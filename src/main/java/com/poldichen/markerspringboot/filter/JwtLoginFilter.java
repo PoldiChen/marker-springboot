@@ -51,6 +51,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
+        System.out.println("JwtLoginFilter@attemptAuthentication");
         try {
             User user = new ObjectMapper().readValue(req.getInputStream(), User.class);
             Authentication authentication = authenticationManager.authenticate(

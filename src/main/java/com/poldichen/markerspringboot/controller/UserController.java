@@ -3,6 +3,7 @@ package com.poldichen.markerspringboot.controller;
 import com.poldichen.markerspringboot.entity.Resp;
 import com.poldichen.markerspringboot.entity.User;
 import com.poldichen.markerspringboot.service.inter.IUserService;
+import com.poldichen.markerspringboot.util.TokenUtil;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,10 +34,7 @@ public class UserController {
         System.out.println("UserController@currentUser");
         Resp resp = new Resp();
 
-        String tokenStr = request.getHeader("Authorization");
-        if (tokenStr == null || tokenStr.equals("")) {
-            tokenStr = request.getHeader("authorization");
-        }
+        String tokenStr = TokenUtil.getToken(request);
         System.out.println(tokenStr);
 
         String userName
@@ -46,6 +44,7 @@ public class UserController {
                 .getBody()
                 .getSubject();
         User user = userService.getByName(userName);
+        user.setUserName(userName);
         resp.setData(user);
 
 

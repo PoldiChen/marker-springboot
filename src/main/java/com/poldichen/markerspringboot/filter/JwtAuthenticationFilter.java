@@ -1,5 +1,6 @@
 package com.poldichen.markerspringboot.filter;
 
+import com.poldichen.markerspringboot.util.TokenUtil;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -42,12 +43,9 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("JwtAuthenticationFilter@doFilterInternal");
-        String authorizationStr = request.getHeader("Authorization");
-        if (authorizationStr == null || authorizationStr.equals("")) {
-            authorizationStr = request.getHeader("authorization");
-        }
-        System.out.println(authorizationStr);
-        if (authorizationStr == null || !authorizationStr.startsWith(jwtPrefix + "-")) {
+        System.out.println(request.getRequestURL());
+        String token = TokenUtil.getToken(request);
+        if (token == null || !token.startsWith(jwtPrefix + "-")) {
             chain.doFilter(request, response);
             return;
         }
@@ -58,10 +56,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
     @Bean
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        if (token == null || token.equals("")) {
-            token = request.getHeader("authorization");
-        }
+        String token = TokenUtil.getToken(request);
         if (token != null) {
             // parse the token.
             String user = Jwts.parser()

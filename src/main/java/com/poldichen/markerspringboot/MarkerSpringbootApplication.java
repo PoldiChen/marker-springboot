@@ -20,7 +20,7 @@ public class MarkerSpringbootApplication {
         SpringApplication.run(MarkerSpringbootApplication.class, args);
 
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        System.out.println(encoder.encode("tom"));
+//        System.out.println(encoder.encode("123456"));
     }
 
 }
