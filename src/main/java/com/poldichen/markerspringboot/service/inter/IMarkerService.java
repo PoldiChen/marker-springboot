@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface IMarkerService {
 
-    public List<Marker> getAll();
+    List<Marker> getAll();
 
-    public int createOne(Marker marker);
+    int createOne(Marker marker);
 
-    public int updateOne(Marker marker);
+    int updateOne(Marker marker);
+
+    int deleteOne(int markerId);
 }

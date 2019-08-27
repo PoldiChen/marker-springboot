@@ -1,6 +1,7 @@
 package com.poldichen.markerspringboot.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.util.Date;
@@ -36,6 +37,7 @@ public class Marker {
 
     @Getter
     @Setter
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateDate;
 
     @Getter

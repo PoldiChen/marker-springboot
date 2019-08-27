@@ -24,4 +24,10 @@ public class LabelServiceImpl implements ILabelService {
     public List<Label> getAll() {
         return labelDao.getAll();
     }
+
+    @Override
+    public int createOne(Label label) {
+        labelDao.createOne(label);
+        return label.getId();
+    }
 }

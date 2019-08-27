@@ -52,4 +52,9 @@ public class MarkerTest {
         markerService.updateOne(marker);
     }
 
+    @Test
+    public void testDeleteOne() {
+        markerService.deleteOne(15);
+    }
+
 }

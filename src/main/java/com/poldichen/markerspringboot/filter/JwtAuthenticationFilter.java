@@ -45,6 +45,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         System.out.println("JwtAuthenticationFilter@doFilterInternal");
         System.out.println(request.getRequestURL());
         String token = TokenUtil.getToken(request);
+        System.out.println(token);
         if (token == null || !token.startsWith(jwtPrefix + "-")) {
             chain.doFilter(request, response);
             return;

@@ -15,4 +15,8 @@ public interface IMarkerDao {
     public int updateOne(@Param("marker") Marker marker);
 
     public void deleteMarkerLabel(@Param("marker_id") int markerId);
+
+    public int deleteOne(@Param("id") int id);
+
+    int countMarkers();
 }

@@ -6,6 +6,8 @@
         <id property="id" column="id" />
         <result property="title" column="title" />
         <result property="content" column="content" />
+        <result property="author" column="author" />
+        <result property="updateDate" column="update_date" />
 
         <collection property="labels" ofType="com.poldichen.markerspringboot.entity.Label">
             <id property="id" column="id" />
@@ -47,5 +49,13 @@
     <delete id="deleteMarkerLabel">
         delete from marker_label where marker_id = #{marker_id}
     </delete>
+
+    <delete id="deleteOne">
+        delete from marker where id = #{id}
+    </delete>
+
+    <select id="countMarkers" resultType="int">
+        select count(*) from marker;
+    </select>
 
 </mapper>

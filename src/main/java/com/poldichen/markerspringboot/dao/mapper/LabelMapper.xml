@@ -6,4 +6,14 @@
         SELECT * FROM label
     </select>
 
+    <insert id="createOne" parameterType="com.poldichen.markerspringboot.entity.Label"
+            useGeneratedKeys="true" keyProperty="label.id">
+        insert into label (name)
+        values (#{label.name})
+    </insert>
+
+    <select id="countLabels" resultType="int">
+        select count(*) from label;
+    </select>
+
 </mapper>

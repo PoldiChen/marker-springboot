@@ -11,8 +11,10 @@ import org.apache.ibatis.annotations.Param;
  **/
 public interface IUserDao {
 
-    public int createOne(@Param("user") User user);
+    int createOne(@Param("user") User user);
 
-    public User getByName(@Param("userName") String userName);
+    User getByName(@Param("userName") String userName);
+
+    int countUsers();
 
 }

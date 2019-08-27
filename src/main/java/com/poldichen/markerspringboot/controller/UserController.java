@@ -37,6 +37,12 @@ public class UserController {
         String tokenStr = TokenUtil.getToken(request);
         System.out.println(tokenStr);
 
+        if (tokenStr == null || tokenStr.equals("")) {
+            resp.setCode(-1);
+            resp.setMessage("Not login");
+            return resp;
+        }
+
         String userName
                 = Jwts.parser()
                 .setSigningKey(jwtSecret)

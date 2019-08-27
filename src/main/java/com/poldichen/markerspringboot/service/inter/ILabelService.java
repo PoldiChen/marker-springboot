@@ -7,4 +7,6 @@ import java.util.List;
 public interface ILabelService {
 
     public List<Label> getAll();
+
+    public int createOne(Label label);
 }

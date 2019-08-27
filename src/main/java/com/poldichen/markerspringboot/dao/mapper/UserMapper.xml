@@ -12,4 +12,8 @@
         SELECT * FROM user where user_name = #{userName}
     </select>
 
+    <select id="countUsers" resultType="int">
+        select count(*) from user;
+    </select>
+
 </mapper>

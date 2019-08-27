@@ -22,7 +22,7 @@ public class MarkerController {
     @Autowired
     private IMarkerService markerService;
 
-    @RequestMapping(value = "/marker")
+    @RequestMapping(value = "/marker", method = RequestMethod.GET)
     public Resp getAll() {
         Resp resp = new Resp();
         List<Marker> markers = markerService.getAll();
@@ -49,6 +49,14 @@ public class MarkerController {
         marker.setUpdateDate(new Date());
         markerService.updateOne(marker);
         Resp resp = new Resp();
+        return resp;
+    }
+
+    @RequestMapping(value = "/marker/{id}", method = RequestMethod.DELETE)
+    public Resp deleteOne(@PathVariable int id) {
+        Resp resp = new Resp();
+        int result = markerService.deleteOne(id);
+        resp.setData(result);
         return resp;
     }
 }

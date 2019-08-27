@@ -11,6 +11,8 @@ spring:
 
 mybatis:
   mapper-locations: "com/poldichen/markerspringboot/dao/mapper/*.xml"
+  configuration:
+    map-underscore-to-camel-case: true
 
 jwt:
   prefix: marker

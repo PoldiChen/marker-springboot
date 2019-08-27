@@ -1,5 +1,6 @@
 package com.poldichen.markerspringboot.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.poldichen.markerspringboot.entity.Label;
 import com.poldichen.markerspringboot.entity.Resp;
 import com.poldichen.markerspringboot.service.inter.ILabelService;
@@ -25,6 +26,15 @@ public class LabelController {
         Resp resp = new Resp();
         List<Label> labels = labelService.getAll();
         resp.setData(labels);
+        return resp;
+    }
+
+    @RequestMapping(value="/label", method=RequestMethod.POST)
+    public Resp createOne(@RequestBody String labelStr) {
+        Resp resp = new Resp();
+        Label label = JSON.parseObject(labelStr, Label.class);
+        int result = labelService.createOne(label);
+        resp.setData(result);
         return resp;
     }
 }

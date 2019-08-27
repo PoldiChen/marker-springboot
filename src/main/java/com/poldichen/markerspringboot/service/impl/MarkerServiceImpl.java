@@ -1,5 +1,6 @@
 package com.poldichen.markerspringboot.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.poldichen.markerspringboot.dao.IMarkerDao;
 import com.poldichen.markerspringboot.entity.Label;
 import com.poldichen.markerspringboot.entity.Marker;
@@ -53,5 +54,12 @@ public class MarkerServiceImpl implements IMarkerService {
             labelIds.add(label.getId());
         }
         return labelIds;
+    }
+
+    @Override
+    public int deleteOne(int markerId) {
+        markerDao.deleteOne(markerId);
+        markerDao.deleteMarkerLabel(markerId);
+        return 1;
     }
 }
